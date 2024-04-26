@@ -1,0 +1,181 @@
+body {
+  width: 100vh;
+  margin: auto;
+}
+
+body::after {
+  content: "";
+  background-image: url('../img/42b1b7a7792ba9c66769e2e274d9a383.jpg');
+  background-size: 1900px;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -10;   
+}
+
+.popup {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  width: 350px;
+  padding: 10px 20px;
+
+  position: absolute;
+  left: calc(50% - 350px / 2);
+
+  margin: auto;
+  margin-top: 50px;
+
+  background-color: white;
+
+  border: 1px solid black;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
+
+.popup_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+}
+
+.popup_title {
+  cursor: default;
+}
+
+.popup_nameInput {
+  width: 100%;
+  height: 25px;
+}
+
+.popup_button {
+  width: 65%;
+  height: 30px;
+
+  background-color: white;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.chat {
+  display: none;
+  flex-direction: column;
+
+  border: 1px solid black;
+  border-radius: 10px;
+
+  width: 70%;
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+
+  background-color: white;
+
+  position: relative;
+}
+
+.chat_usersList {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+
+  border: 1px solid black;
+  border-radius: 10px;
+
+  width: 180px;
+  padding: 25px;
+
+  background-color: white;
+
+  position: absolute;
+  left: -170px;
+  z-index: -1;
+
+  white-space: pre;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.user_icon {
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.chat_messageArea {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  height: 380px;
+  padding-right: 40px;
+
+  overflow-y: scroll;
+}
+
+.chat_form {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.chat_input {
+  width: 96%;
+  height: 30px;
+  padding: 0 10px;
+
+  border-radius: 10px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.message_info {
+  font-size: 14px;
+}
+
+.message_text {
+  font-size: 18px;
+}
+
+.actualUserMsg .message_info {
+  color: red;
+}
+
+.actualUserMsg {
+  text-align: right;
+}
+
+.error {
+  padding: 10px 30px;
+
+  background-color: white;
+
+  border: 1px solid red;
+  border-radius: 5px;
+
+  text-align: center;
+
+  position: absolute;
+  top: 135px;
+  
+  opacity: 80%;
+}
