@@ -15,9 +15,9 @@ export default class App {
     this.messages = [];
     this.actualUser;
 
-    this.serverUrl = 'https://sse-ws-backend-4ra8.onrender.com'
+    this.serverUrl = 'https://sse-ws-backend-mp30.onrender.com';
 
-    this.ws = new WebSocket('wss://sse-ws-backend-4ra8.onrender.com/ws');
+    this.ws = new WebSocket('wss://sse-ws-backend-mp30.onrender.com/ws');
 
     this.#init();
     this.#wsInit();
