@@ -14,32 +14,18 @@ export default class App {
     this.users = [];
     this.messages = [];
     this.actualUser;
-    this.ws = new WebSocket('ws://localhost:3000/ws');
+
+    this.serverUrl = 'https://sse-ws-backend-4ra8.onrender.com'
+
+    this.ws = new WebSocket('wss://sse-ws-backend-4ra8.onrender.com/ws');
 
     this.#init();
     this.#wsInit();
     this.#closeListener();
   }
 
-  // Method for creating Date
-  #getDate() {
-    const currentDate = new Date();
-
-    const hours = String(currentDate.getHours()).padStart(2, '0');
-    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
-  
-    const day = String(currentDate.getDate()).padStart(2, '0');
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JS начинаются с 0, поэтому добавляем 1
-    const year = String(currentDate.getFullYear()).slice(2); // Получаем последние две цифры года
-  
-    const formattedDateTime = `${hours}:${minutes} ${day}.${month}.${year}`;
-  
-    return formattedDateTime;
-  }
-
-
-// Initialization of app
-  #init() {
+  // Initialization of app
+  async #init() {
     document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => this.popup.style.display = 'flex', 1000);
     });
@@ -57,6 +43,22 @@ export default class App {
       this.#addUser(this.popupInput.value);
     });
 
+  }
+
+  // Method for creating Date
+  #getDate() {
+    const currentDate = new Date();
+
+    const hours = String(currentDate.getHours()).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+  
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Месяцы в JS начинаются с 0, поэтому добавляем 1
+    const year = String(currentDate.getFullYear()).slice(2); // Получаем последние две цифры года
+  
+    const formattedDateTime = `${hours}:${minutes} ${day}.${month}.${year}`;
+  
+    return formattedDateTime;
   }
 
 // Initialization of WS and Listeners for WS events
@@ -89,7 +91,6 @@ export default class App {
       console.log(e);
       console.log('ws message');
       const data = JSON.parse(e.data);
-      console.log(data);
       if (!data.message) {
         this.users = data;
         this.#drawUsers();
@@ -172,7 +173,7 @@ export default class App {
 // AJAX for creating new user
   #addUser(value) {
     const body = JSON.stringify({ name: value });
-    fetch('http://localhost:3000/new-user', {
+    fetch(this.serverUrl + '/new-user', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
